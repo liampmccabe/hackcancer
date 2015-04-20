@@ -145,7 +145,6 @@ var Engine = Matter.Engine,
               var x = Common.random(0, window.innerWidth);
               var y = Common.random(0, window.innerHeight);
 
-
               World.add(_world, Bodies.circle(x, y, cells[cellCount].maxRadius, { 
                 friction: 0.00001, 
                 restitution: 0.0001, 
@@ -175,10 +174,18 @@ var Engine = Matter.Engine,
 
               if(typeof cells[i] !== 'undefined') {
 
-                if(cells[i].opacity < cells[i].maxOpacity) {
-                  cells[i].opacity += 0.001;
-                  body.render.strokeStyle = 'rgba(255,255,255,'+cells[i].opacity+')';
+                if(i % 10 == 0) {
+                  if(cells[i].opacity < cells[i].maxOpacity) {
+                    cells[i].opacity += 0.001;
+                    body.render.strokeStyle = 'rgba(255,0,0,'+(cells[i].opacity+0.2)+')';
+                  }
+                } else {
+                  if(cells[i].opacity < cells[i].maxOpacity) {
+                    cells[i].opacity += 0.001;
+                    body.render.strokeStyle = 'rgba(255,255,255,'+cells[i].opacity+')';
+                  }
                 }
+                
 
                 /*if(cells[i].radius < cells[i].maxRadius) {
                   cells[i].radius += 0.1;

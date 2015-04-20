@@ -133,7 +133,7 @@ var Engine = Matter.Engine,
 
             flow(engine);
 
-            if(cellCount < 500) {
+            if(cellCount < 300) {
               ++cellCount;
 
               cells[cellCount] = {};
@@ -196,13 +196,13 @@ var Engine = Matter.Engine,
 
               }
 
-              if (!body.isStatic && Common.random(0,500) > 450) {
+              if (!body.isStatic && Common.random(0,300) > 250) {
+
                   if(body.cancer) {
                     var forceMagnitude = 0.001 * body.mass;
                   } else {
                     var forceMagnitude = 0.0001 * body.mass;
                   }
-                  
 
                   Body.applyForce(body, { x: 0, y: 0 }, { 
                       x: (forceMagnitude + Common.random(-0.2,0.2) * forceMagnitude) * Common.choose([1, -1]), 

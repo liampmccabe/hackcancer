@@ -1,7 +1,6 @@
 var express = require('express'),
     app = express(),
-    server = require('http').createServer(app),
-    Schema = mongoose.Schema;
+    server = require('http').createServer(app);
 
 //Set directory that will be served
 app.use(express.static(__dirname + '/app'));

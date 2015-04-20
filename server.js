@@ -3,7 +3,7 @@ var express = require('express'),
     server = require('http').createServer(app);
 
 //Set directory that will be served
-app.use(express.static(__dirname + '/app'));
+app.use(express.static(__dirname + '/dist'));
 
 //Set the port to use
 app.set('port', process.env.PORT || 5000);

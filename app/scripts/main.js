@@ -1,3 +1,5 @@
+'use strict';
+
 /* jshint devel:true */
 
 // Matter.js - http://brm.io/matter-js/

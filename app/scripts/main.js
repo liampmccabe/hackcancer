@@ -177,6 +177,7 @@ var Engine = Matter.Engine,
                 if(i % 10 == 0) {
                   if(cells[i].opacity < cells[i].maxOpacity) {
                     cells[i].opacity += 0.001;
+                    body.render.fillStyle = 'rgba(255,0,0,'+(cells[i].opacity)+')';
                     body.render.strokeStyle = 'rgba(255,0,0,'+(cells[i].opacity+0.2)+')';
                   }
                 } else {

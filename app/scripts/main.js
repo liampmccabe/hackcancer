@@ -138,7 +138,7 @@ var Engine = Matter.Engine,
 
               cells[cellCount] = {};
               cells[cellCount].opacity = 0;
-              cells[cellCount].maxOpacity = Common.random(0,10)/100;
+              cells[cellCount].maxOpacity = Common.random(3,12)/100;
               cells[cellCount].radius = 0;
               cells[cellCount].maxRadius = Common.random(4, 30);
 
@@ -249,6 +249,18 @@ var Engine = Matter.Engine,
       _engine.world.gravity.y = 1;
       _engine.world.gravity.x = 0;
       _engine.timing.timeScale = 1;
+
+      /*World.add(_world, [
+          Bodies.rectangle(640, 330, 360, 200, { 
+          isStatic: true,
+          friction: 0.00001, 
+          restitution: 0.5, 
+          density: 0.001,
+          render: {
+             fillStyle: 'rgba(255,255,255,0)',
+             strokeStyle: 'rgba(255,255,255,0)',
+          }})
+      ]);*/
 
       /*var offset = 25;
       World.add(_world, [

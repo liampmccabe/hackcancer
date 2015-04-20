@@ -138,7 +138,7 @@ var Engine = Matter.Engine,
 
               cells[cellCount] = {};
               cells[cellCount].opacity = 0;
-              cells[cellCount].maxOpacity = Common.random(0,20)/100;
+              cells[cellCount].maxOpacity = Common.random(0,10)/100;
               cells[cellCount].radius = 0;
               cells[cellCount].maxRadius = Common.random(4, 30);
 

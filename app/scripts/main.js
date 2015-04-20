@@ -129,11 +129,11 @@ var Engine = Matter.Engine,
 
           var engine = event.source;
 
-          if (event.timestamp % 100 < 50) {
+          if (event.timestamp % 10 < 50) {
 
             flow(engine);
 
-            if(cellCount < 200) {
+            if(cellCount < 500) {
               ++cellCount;
 
               cells[cellCount] = {};
@@ -144,6 +144,7 @@ var Engine = Matter.Engine,
 
               var x = Common.random(0, window.innerWidth);
               var y = Common.random(0, window.innerHeight);
+
 
               World.add(_world, Bodies.circle(x, y, cells[cellCount].maxRadius, { 
                 friction: 0.00001, 
@@ -186,7 +187,7 @@ var Engine = Matter.Engine,
 
               }
 
-              if (!body.isStatic) {
+              if (!body.isStatic && Common.random(0,500) > 450) {
                   var forceMagnitude = 0.0001 * body.mass;
 
                   Body.applyForce(body, { x: 0, y: 0 }, { 

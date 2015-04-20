@@ -138,7 +138,7 @@ var Engine = Matter.Engine,
 
               cells[cellCount] = {};
               cells[cellCount].opacity = 0;
-              cells[cellCount].maxOpacity = Common.random(3,12)/100;
+              cells[cellCount].maxOpacity = Common.random(2,12)/100;
               cells[cellCount].radius = 0;
               cells[cellCount].maxRadius = Common.random(4, 30);
 
@@ -174,9 +174,10 @@ var Engine = Matter.Engine,
 
               if(typeof cells[i] !== 'undefined') {
 
-                if(i % 10 == 0) {
+                if(i % 20 == 0) {
                   if(cells[i].opacity < cells[i].maxOpacity) {
                     cells[i].opacity += 0.001;
+                    body.cancer = true;
                     body.render.fillStyle = 'rgba(255,0,0,'+(cells[i].opacity)+')';
                     body.render.strokeStyle = 'rgba(255,0,0,'+(cells[i].opacity+0.2)+')';
                   }
@@ -196,7 +197,12 @@ var Engine = Matter.Engine,
               }
 
               if (!body.isStatic && Common.random(0,500) > 450) {
-                  var forceMagnitude = 0.0001 * body.mass;
+                  if(body.cancer) {
+                    var forceMagnitude = 0.001 * body.mass;
+                  } else {
+                    var forceMagnitude = 0.0001 * body.mass;
+                  }
+                  
 
                   Body.applyForce(body, { x: 0, y: 0 }, { 
                       x: (forceMagnitude + Common.random(-0.2,0.2) * forceMagnitude) * Common.choose([1, -1]), 

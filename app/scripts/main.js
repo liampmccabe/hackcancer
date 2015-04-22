@@ -107,6 +107,7 @@ var Engine = Matter.Engine,
       var cellCount = 0;
       var cells = [];
       var nucleus = [];
+      var overlayOpacity = 0;
 
       _sceneEvents.push(
 
@@ -116,15 +117,22 @@ var Engine = Matter.Engine,
 
             // change object colours to show those starting a collision
             for (var i = 0; i < pairs.length; i++) {
+
                 var pair = pairs[i];
+
+                if(overlayOpacity < 1) overlayOpacity += 0.0005;
+                overlayOpacity = parseFloat(overlayOpacity.toFixed(5));
+
                 if(pair.bodyA.cancer) {
                   pair.bodyB.cancer = true;
                   pair.bodyB.render.fillStyle = pair.bodyA.render.fillStyle;
                   pair.bodyB.render.strokeStyle = pair.bodyA.render.strokeStyle;
+                  document.getElementsByClassName('overlay')[0].style.opacity = overlayOpacity;
                 } else if (pair.bodyB.cancer) {
                   pair.bodyA.cancer = true;
                   pair.bodyA.render.fillStyle = pair.bodyB.render.fillStyle;
                   pair.bodyA.render.strokeStyle = pair.bodyB.render.strokeStyle;
+                  document.getElementsByClassName('overlay')[0].style.opacity = overlayOpacity;
                 }
             }
         })
@@ -315,9 +323,3 @@ var Engine = Matter.Engine,
       if (_isMobile)
           renderOptions.showDebug = true;
     };
-
-
-setTimeout(function() {
-  document.getElementsByClassName('overlay')[0].className += ' visible';
-}, 4000)
-

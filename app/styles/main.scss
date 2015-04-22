@@ -27,12 +27,6 @@ body {
   height: 100%;
   opacity: 0;
   background: radial-gradient(ellipse at bottom right, #993333 0%, #1b0202 90%);
-  transition: opacity 4s ease;
-
-  &.visible {
-    //opacity: 1;
-    transition: opacity 4s ease;
-  }
 }
 
 canvas {

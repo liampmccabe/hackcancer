@@ -121,6 +121,7 @@ var Engine = Matter.Engine,
 
       var cellCount = 0;
       var cells = [];
+      var nucleus = [];
 
       _sceneEvents.push(
 
@@ -145,6 +146,8 @@ var Engine = Matter.Engine,
               var x = Common.random(0, window.innerWidth);
               var y = Common.random(0, window.innerHeight);
 
+              nucleus[cellCount] = {};
+
               World.add(_world, Bodies.circle(x, y, cells[cellCount].maxRadius, { 
                 friction: 0.00001, 
                 restitution: 0.0001, 
@@ -153,6 +156,18 @@ var Engine = Matter.Engine,
                   fillStyle: 'rgba(255,255,255,0)',
                   strokeStyle: 'rgba(255,255,255,0)',
                   lineWidth: 2
+                }
+              }));
+
+              World.add(_world, Bodies.circle(x, y, 3, {
+                nucleus: true,
+                friction: 0, 
+                restitution: 0,
+                density: 0,
+                render: {
+                  fillStyle: 'rgba(255,255,255,'+cells[cellCount].maxOpacity+')',
+                  strokeStyle: 'rgba(255,255,255,0)',
+                  lineWidth: 0
                 }
               }));
 
@@ -170,44 +185,44 @@ var Engine = Matter.Engine,
           for (var i = 0; i < bodies.length; i++) {
               var body = bodies[i];
 
-              //console.log(body);
-
               if(typeof cells[i] !== 'undefined') {
 
-                if(i % 20 == 0) {
-                  if(cells[i].opacity < cells[i].maxOpacity) {
-                    cells[i].opacity += 0.001;
-                    body.cancer = true;
-                    body.render.fillStyle = 'rgba(255,0,0,'+(cells[i].opacity)+')';
-                    body.render.strokeStyle = 'rgba(255,0,0,'+(cells[i].opacity+0.2)+')';
-                  }
-                } else {
-                  if(cells[i].opacity < cells[i].maxOpacity) {
-                    cells[i].opacity += 0.001;
-                    body.render.strokeStyle = 'rgba(255,255,255,'+cells[i].opacity+')';
+                if(!body.nucleus) {
+                  if(i % 20 == 0) {
+                    if(cells[i].opacity < cells[i].maxOpacity) {
+                      cells[i].opacity += 0.001;
+                      body.cancer = true;
+                      body.render.fillStyle = 'rgba(255,0,0,'+(cells[i].opacity)+')';
+                      body.render.strokeStyle = 'rgba(255,0,0,'+(cells[i].opacity+0.2)+')';
+                    }
+                  } else {
+                    if(cells[i].opacity < cells[i].maxOpacity) {
+                      cells[i].opacity += 0.001;
+                      body.render.strokeStyle = 'rgba(255,255,255,'+cells[i].opacity+')';
+                    }
                   }
                 }
-                
 
-                /*if(cells[i].radius < cells[i].maxRadius) {
-                  cells[i].radius += 0.1;
-                  body.circleRadius = cells[i].radius;
-                }*/
+                if(body.nucleus && typeof nucleus[i] !== 'undefined') {
+                  body.position.x = bodies[i-1].position.x;
+                  body.position.y = bodies[i-1].position.y;
+                }
 
               }
 
-              if (!body.isStatic && Common.random(0,300) > 250) {
+              if (!body.isStatic && Common.random(0,100) > 50) {
 
-                  if(body.cancer) {
-                    var forceMagnitude = 0.001 * body.mass;
-                  } else {
-                    var forceMagnitude = 0.0001 * body.mass;
-                  }
+                if(body.cancer) {
+                  var forceMagnitude = 0.001 * body.mass;
+                } else {
+                  var forceMagnitude = 0.0001 * body.mass;
+                }
 
-                  Body.applyForce(body, { x: 0, y: 0 }, { 
-                      x: (forceMagnitude + Common.random(-0.2,0.2) * forceMagnitude) * Common.choose([1, -1]), 
-                      y: (forceMagnitude + Common.random(-0.2,0.2) * forceMagnitude) * Common.choose([1, -1])
-                  });
+                Body.applyForce(body, { x: 0, y: 0 }, { 
+                    x: (forceMagnitude + Common.random(-0.2,0.2) * forceMagnitude) * Common.choose([1, -1]), 
+                    y: (forceMagnitude + Common.random(-0.2,0.2) * forceMagnitude) * Common.choose([1, -1])
+                });
+
               }
           }
         };

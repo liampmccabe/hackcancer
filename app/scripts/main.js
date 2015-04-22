@@ -81,21 +81,6 @@ var Engine = Matter.Engine,
       _engine.world.gravity.y = 0;
       _engine.world.gravity.x = 0;
 
-      /*var stack = Composites.stack(0, 0, 20, 20, 0, 0, function(x, y, column, row) {
-        return Bodies.circle(x, y, Common.random(10, 30), { 
-          friction: 0.00001, 
-          restitution: 0.5, 
-          density: 0.001,
-          render: {
-             fillStyle: 'rgba(255,255,255,0)',
-             strokeStyle: 'rgba(255,255,255,'+randomIntInc(0,40)/100+')',
-             lineWidth: 2
-          }
-        });
-      });*/
-
-      //World.add(_world, stack);
-
       var renderOptions = _engine.render.options;
       renderOptions.wireframes = false;
       renderOptions.width = window.innerWidth*2;
@@ -159,7 +144,7 @@ var Engine = Matter.Engine,
                 }
               }));
 
-              World.add(_world, Bodies.circle(x, y, 3, {
+              World.add(_world, Bodies.circle(x, y, cells[cellCount].maxRadius/10, {
                 nucleus: true,
                 friction: 0, 
                 restitution: 0,

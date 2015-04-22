@@ -134,7 +134,7 @@ var Engine = Matter.Engine,
 
             flow(engine);
 
-            if(cellCount < 300) {
+            if(cellCount < 350) {
               ++cellCount;
 
               cells[cellCount] = {};

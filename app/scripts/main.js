@@ -196,7 +196,7 @@ var Engine = Matter.Engine,
               if(typeof cells[i] !== 'undefined') {
 
                 if(!body.nucleus) {
-                  if(i % 20 == 0) {
+                  if(i % 50 == 0) {
                     if(cells[i].opacity < cells[i].maxOpacity) {
                       cells[i].opacity += 0.001;
                       body.cancer = true;
@@ -218,9 +218,9 @@ var Engine = Matter.Engine,
 
               }
 
-              if (!body.isStatic && Common.random(0,100) > 50) {
+              if (!body.isStatic && Common.random(0,100) > 33) {
 
-                var forceMagnitude = 0.00002 * body.mass;
+                var forceMagnitude = 0.00004 * body.mass;
 
                 Body.applyForce(body, { x: 0, y: 0 }, { 
                     x: (forceMagnitude + Common.random(-0.2,0.2) * forceMagnitude) * Common.choose([1, -1]), 

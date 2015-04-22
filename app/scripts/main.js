@@ -110,6 +110,29 @@ var Engine = Matter.Engine,
 
       _sceneEvents.push(
 
+        // an example of using collisionStart event on an engine
+        Events.on(_engine, 'collisionStart', function(event) {
+            var pairs = event.pairs;
+
+            // change object colours to show those starting a collision
+            for (var i = 0; i < pairs.length; i++) {
+                var pair = pairs[i];
+                if(pair.bodyA.cancer) {
+                  pair.bodyB.cancer = true;
+                  pair.bodyB.render.fillStyle = pair.bodyA.render.fillStyle;
+                  pair.bodyB.render.strokeStyle = pair.bodyA.render.strokeStyle;
+                } else if (pair.bodyB.cancer) {
+                  pair.bodyA.cancer = true;
+                  pair.bodyA.render.fillStyle = pair.bodyB.render.fillStyle;
+                  pair.bodyA.render.strokeStyle = pair.bodyB.render.strokeStyle;
+                }
+            }
+        })
+
+      );
+
+      _sceneEvents.push(
+
         // an example of using beforeUpdate event on an engine
         Events.on(_engine, 'beforeUpdate', function(event) {
 
@@ -124,7 +147,7 @@ var Engine = Matter.Engine,
 
               cells[cellCount] = {};
               cells[cellCount].opacity = 0;
-              cells[cellCount].maxOpacity = Common.random(2,12)/100;
+              cells[cellCount].maxOpacity = Common.random(5,15)/100;
               cells[cellCount].radius = 0;
               cells[cellCount].maxRadius = Common.random(4, 30);
 
@@ -197,11 +220,7 @@ var Engine = Matter.Engine,
 
               if (!body.isStatic && Common.random(0,100) > 50) {
 
-                if(body.cancer) {
-                  var forceMagnitude = 0.001 * body.mass;
-                } else {
-                  var forceMagnitude = 0.0001 * body.mass;
-                }
+                var forceMagnitude = 0.00002 * body.mass;
 
                 Body.applyForce(body, { x: 0, y: 0 }, { 
                     x: (forceMagnitude + Common.random(-0.2,0.2) * forceMagnitude) * Common.choose([1, -1]), 

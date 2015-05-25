@@ -12,7 +12,7 @@ html {
 body {
   font-size: 1.6rem;
   background: #663399;
-  background: radial-gradient(ellipse at top center, #663399 0%, #2d1643 100%);
+  background: radial-gradient(ellipse at top 30% center, #4a256e 0%, #2d1643 80%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: 'NTR', Helvetica, Arial, sans-serif;
@@ -98,7 +98,6 @@ input[type="submit"] {
     line-height: 1;
     font-weight: 400;
     text-transform: uppercase;
-    text-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 10px #27103E;
   }
 
   h2 {
@@ -106,7 +105,6 @@ input[type="submit"] {
     line-height: 1;
     font-weight: 400;
     color: rgba(255,255,255,0.5);
-    text-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 10px #27103E;
   }
 
   p {
@@ -117,7 +115,6 @@ input[type="submit"] {
     line-height: 1;
     font-weight: 400;
     color: rgba(255,255,255,0.8);
-    text-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 0 10px #27103E;
   }
 
   #mc_embed_signup {

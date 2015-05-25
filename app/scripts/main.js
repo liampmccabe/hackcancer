@@ -167,7 +167,7 @@ var Engine = Matter.Engine,
         nucleus.density = 0;
         nucleus.inertia = 0;
 
-        if(Common.random(1,600) > 590) {
+        if(Common.random(1,600) > 560) {
           cellComposite.cancer = true;
         }
 

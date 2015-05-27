@@ -200,6 +200,11 @@ var Engine = Matter.Engine,
             var cell = cells[i];
             var membrane = cell.bodies[0];
 
+            if(membrane.id == pairs[0].bodyA.id) {
+              if(Common.random(0,10) > 9) {
+                cell.cancer = true;
+              }
+            }
 
           }
 
@@ -220,7 +225,7 @@ var Engine = Matter.Engine,
 
             flow(engine);
 
-            if(++cellCount < 200) {
+            if(++cellCount < 100) {
 
               var x = Common.random(50, window.innerWidth-50);
               var y = Common.random(50, window.innerHeight-50);

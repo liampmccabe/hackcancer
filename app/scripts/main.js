@@ -177,15 +177,6 @@ var Engine = Matter.Engine,
       }
 
 
-
-      //Email input listener
-      document.getElementById('mce-EMAIL').addEventListener('keydown', function() {
-        inputKeyDown = true;
-      });
-
-
-
-
       _sceneEvents.push(
 
         // an example of using collisionStart event on an engine

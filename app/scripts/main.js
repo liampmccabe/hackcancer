@@ -116,7 +116,10 @@ var Engine = Matter.Engine,
       ]);
 
 
-      var cellCount = 0;
+      var cellCount = 0,
+          maxCells = 0;
+
+      maxCells = Math.floor(window.innerWidth/10);
 
       var cell = function(xx,yy,radius) {
 
@@ -216,7 +219,7 @@ var Engine = Matter.Engine,
 
             flow(engine);
 
-            if(++cellCount < 100) {
+            if(++cellCount < maxCells) {
 
               var x = Common.random(50, window.innerWidth-50);
               var y = Common.random(50, window.innerHeight-50);
